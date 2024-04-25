@@ -1,0 +1,86 @@
+graph={
+    'a':['b','c'],
+    'b':['d','e'],
+    'c':['f'],
+    'd':[],
+    'e':[],
+    'f':[]
+}
+visited=[]
+queue=[]
+def bfs(visited,node,graph):
+    visited.append(node)
+    queue.append(node)
+    while queue:
+        m=queue.pop(0)
+        print(m,end=" ")
+        for neighbour in graph[m]:
+            if neighbour not in visited:
+                visited.append(neighbour)
+                queue.append(neighbour)
+start='a'
+
+print("The bfs traversal is:")
+bfs(visited,start,graph)
+print("visited list",visited)
+
+
+
+
+
+
+
+def dls(node, goal, depth_limit, graph):
+    visited = set()
+    return recursive_dls(visited, node, goal, depth_limit, graph)
+
+def recursive_dls(visited, node, goal, depth_limit, graph):
+    if node == goal:
+        return True
+    elif depth_limit == 0:
+        return False
+    else:
+        visited.add(node)
+        if node in graph:
+            for child in graph[node]:
+                if child not in visited and recursive_dls(visited, child, goal, depth_limit - 1, graph):
+                    return True
+        return False
+
+graph = {
+    'a': ['b', 'c'],
+    'b': ['d', 'e'],
+    'c': ['f'],
+    'd': [],
+    'e': [],
+    'f': []
+}
+
+start = 'a'
+goal = 'f'  # Corrected to a node present in the graph
+depth_limit = int(input("Enter the limit: "))
+result = dls(start, goal, depth_limit, graph)
+print(result)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
